@@ -3,17 +3,30 @@ var thetamin = 0,
   period = 5,
   linespacing = 1 / 30,
   linelength = linespacing / 2,
-  yscreenoffset = 300,
-  xscreenoffset = 260,
-  xscreenscale = 360,
-  yscreenscale = 360,
+  yscreenoffset = 600,
+  xscreenoffset = 520,
+  xscreenscale = 720,
+  yscreenscale = 720,
+  rectSide = 1000,
   ycamera = 2,
   zcamera = -3,
 
   rate = 1 / (2 * Math.PI), // every rotation y gets one bigger
   factor = rate / 3;
 
+function resizeSize(size) {
+  return Math.floor(size / 1000 * canvasSide);
+}
+function resizeSizes() {
+  yscreenoffset = resizeSize(yscreenoffset);
+  xscreenoffset = resizeSize(xscreenoffset);
+  xscreenscale = resizeSize(xscreenscale);
+  yscreenscale = resizeSize(yscreenscale);
+  rectSide = resizeSize(rectSide);
+}
+
 function run() {
+  resizeSizes();
   var ctx = document.getElementById('scene').getContext('2d'),
     redSpiral = new Spiral({
       foreground: "#ff0000",
@@ -54,7 +67,7 @@ function run() {
   }
 
   function renderFrame() {
-    ctx.clearRect(0, 0, 500, 500);
+    ctx.clearRect(0, 0, rectSide, rectSide);
     ctx.beginPath();
 
     redSpiralShadow2.draw(ctx);

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      * {padding: 0; margin: 0;}
+      body {background:#000}
+      #main-box {margin:0 auto;}
+    </style>
+  </head>
+  
+
+  <body>
+    <div id="main-box"><canvas id="scene" width="1000px" height="1000px"></canvas></div>
+    <script src="index.js"></script>
+    <script>
+      var canvas = document.getElementById('scene'),
+        mainBox = document.getElementById('main-box'),
+        width = window.innerWidth,
+        height = window.innerHeight,
+        canvasSide = (window.innerWidth > window.innerHeight) ? window.innerHeight : window.innerWidth;
+
+      canvas.width = canvasSide;
+      canvas.height = canvasSide;
+      mainBox.style.paddingTop = Math.floor((window.innerHeight - canvasSide) / 2) + 'px';
+      mainBox.style.width = canvasSide + 'px';
+      run(canvasSide);
+    </script>
+  </body>
+
+</html>
